@@ -327,59 +327,7 @@ npm install lucide-react
 ### 2. Tailwind Classes Not Working
 
 Tailwind CSS Setup (Vite Plugin Method)
-Installing Tailwind CSS as a Vite plugin is the most seamless way to integrate it with frameworks like Laravel, SvelteKit, React Router, Nuxt, and SolidJS.
-### Step 1 - Install Tailwind CSS
-
-Install tailwindcss and @tailwindcss/vite via pnpm:
-bashpnpm install tailwindcss @tailwindcss/vite
-### Step 2 - Configure the Vite plugin
-
-Add the @tailwindcss/vite plugin to your Vite configuration:
-### vite.config.ts
-
-typescriptimport { defineConfig } from 'vite'
-import tailwindcss from '@tailwindcss/vite'
-
-export default defineConfig({
-  plugins: [
-    tailwindcss(),
-  ],
-})
-### Step 3 - Import Tailwind CSS
-
-Add an @import to your CSS file that imports Tailwind CSS:
-styles.css
-css@import "tailwindcss";
-### Step 4 - Start your build process
-
-Run your build process with npm run dev or whatever command is configured in your package.json file:
-bashnpm run dev
-
-### Alternative Installation Methods
-
-<details>
-<summary>Traditional PostCSS Setup</summary>
-If you prefer the traditional PostCSS approach:
-
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
-tailwind.config.js
-javascript/** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-}
-### src/index.css
-
-css@tailwind base;
-@tailwind components;
-@tailwind utilities;
+💡 Ensure Tailwind CSS is correctly set up in your Vite project. [Follow Tailwind's Vite guide](https://tailwindcss.com/docs/guides/vite).
 
 
 ### 3. Smooth Transitions Not Working
