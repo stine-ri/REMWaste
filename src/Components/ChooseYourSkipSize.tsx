@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Check, AlertTriangle, Truck, Clock, Sun, Moon } from 'lucide-react';
 
@@ -81,10 +82,10 @@ const SkipSelector: React.FC = () => {
 
   if (loading) {
     return (
-      <div className={`min-h-screen ${isDark ? 'bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900' : 'bg-gradient-to-br from-blue-50 to-indigo-100'} flex items-center justify-center transition-all duration-500`}>
+      <div className={`min-h-screen ${isDark ? 'bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900' : 'bg-gradient-to-br from-blue-50 to-indigo-100'} flex items-center justify-center transition-all duration-500 px-4`}>
         <div className="text-center">
           <div className={`w-12 h-12 border-3 ${isDark ? 'border-blue-400 border-t-transparent' : 'border-blue-600 border-t-transparent'} rounded-full animate-spin mx-auto mb-4`}></div>
-          <p className={`${isDark ? 'text-gray-300' : 'text-gray-700'} text-lg font-medium transition-colors duration-300`}>Loading available skips...</p>
+          <p className={`${isDark ? 'text-gray-300' : 'text-gray-700'} text-base sm:text-lg font-medium transition-colors duration-300`}>Loading available skips...</p>
         </div>
       </div>
     );
@@ -96,8 +97,9 @@ const SkipSelector: React.FC = () => {
     <div className={`min-h-screen transition-all duration-500 ${isDark ? 'bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900' : 'bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50'}`}>
       {/* Header Progress */}
       <div className={`${isDark ? 'bg-gray-900/95 border-gray-700' : 'bg-white/90 border-indigo-100'} backdrop-blur-sm shadow-lg border-b sticky top-0 z-10 transition-all duration-300`}>
-        <div className="max-w-7xl mx-auto px-6 py-6">
-          <div className="flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 py-4 md:py-6">
+          {/* Desktop Progress */}
+          <div className="hidden lg:flex items-center justify-between">
             <div className="flex items-center flex-1">
               {steps.map((step, index) => (
                 <div key={step.name} className="flex items-center">
@@ -138,31 +140,71 @@ const SkipSelector: React.FC = () => {
               {isDark ? <Sun size={20} /> : <Moon size={20} />}
             </button>
           </div>
+
+          {/* Mobile/Tablet Progress */}
+          <div className="lg:hidden">
+            <div className="flex items-center justify-between mb-3">
+              <h2 className={`text-lg sm:text-xl font-bold transition-colors duration-300 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                Select Skip
+              </h2>
+              <button
+                onClick={toggleTheme}
+                className={`p-2 sm:p-3 rounded-full transition-all duration-300 shadow-lg ${
+                  isDark 
+                    ? 'bg-gradient-to-r from-yellow-400 to-orange-500 text-white' 
+                    : 'bg-gradient-to-r from-slate-600 to-gray-700 text-white'
+                }`}
+              >
+                {isDark ? <Sun size={18} /> : <Moon size={18} />}
+              </button>
+            </div>
+            
+            {/* Enhanced mobile progress with step context */}
+            <div className="flex items-center justify-between text-xs sm:text-sm">
+              <div className={`flex items-center gap-1 transition-colors duration-300 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+                <span>Previous:</span>
+                <span className="font-medium">Waste Type</span>
+              </div>
+              
+              <div className={`px-3 py-1 rounded-full font-semibold transition-all duration-300 ${
+                isDark 
+                  ? 'bg-gradient-to-r from-blue-400 to-indigo-500 text-white' 
+                  : 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white'
+              }`}>
+                Select Skip
+              </div>
+              
+              <div className={`flex items-center gap-1 transition-colors duration-300 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+                <span>Next:</span>
+                <span className="font-medium">Permit Check</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 py-6 sm:py-8 md:py-12">
         {/* Title */}
-        <div className="text-center mb-12">
-          <h1 className={`text-4xl font-bold mb-4 transition-all duration-300 ${
+        <div className="text-center mb-8 sm:mb-10 md:mb-12">
+          <h1 className={`text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 transition-all duration-300 ${
             isDark 
               ? 'bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent' 
               : 'bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent'
           }`}>
             Choose Your Skip Size
           </h1>
-          <p className={`text-lg max-w-2xl mx-auto transition-colors duration-300 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+          <p className={`text-base sm:text-lg max-w-2xl mx-auto px-4 transition-colors duration-300 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
             Select the skip size that best suits your project needs. All prices include VAT and delivery.
           </p>
         </div>
 
-        {/* Skip Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+        {/* Skip Grid - Updated to show 3 cards on desktop */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8 mb-6 sm:mb-8">
           {skips.map((skip) => (
             <div
               key={skip.id}
-              className={`backdrop-blur-sm rounded-2xl border-2 transition-all duration-300 cursor-pointer hover:shadow-2xl hover:scale-105 ${
+              className={`backdrop-blur-sm rounded-2xl border-2 transition-all duration-300 cursor-pointer hover:shadow-2xl hover:scale-[1.02] ${
                 selectedSkip === skip.id 
                   ? (isDark 
                       ? 'border-indigo-400 shadow-2xl ring-4 ring-indigo-400/30 bg-gray-800/90' 
@@ -173,8 +215,8 @@ const SkipSelector: React.FC = () => {
               }`}
               onClick={() => handleSkipSelection(skip.id)}
             >
-              {/* Skip Image */}
-              <div className="relative h-48 bg-gradient-to-br from-orange-400 via-yellow-400 to-orange-500 rounded-t-2xl overflow-hidden">
+              {/* Skip Image - Increased size */}
+              <div className="relative h-48 sm:h-52 md:h-56 bg-gradient-to-br from-orange-400 via-yellow-400 to-orange-500 rounded-t-2xl overflow-hidden">
                 {/* Skip Size Badge */}
                 <div className={`absolute top-4 right-4 px-4 py-2 rounded-full text-sm font-bold shadow-lg transition-all duration-300 ${
                   isDark 
@@ -184,9 +226,9 @@ const SkipSelector: React.FC = () => {
                   {skip.size} Yards
                 </div>
                 
-                {/* Skip Bin SVG */}
+                {/* Skip Bin SVG - Increased size */}
                 <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
-                  <svg width="120" height="80" viewBox="0 0 120 80" className="drop-shadow-2xl">
+                  <svg width="140" height="90" viewBox="0 0 120 80" className="drop-shadow-2xl">
                     <rect x="20" y="25" width="80" height="45" fill="#FFA500" stroke="#FF8C00" strokeWidth="2" rx="4"/>
                     <rect x="15" y="20" width="90" height="8" fill="#FFB84D" stroke="#FF8C00" strokeWidth="1" rx="4"/>
                     <rect x="22" y="67" width="76" height="8" fill="#E6940A" rx="2"/>
@@ -208,10 +250,12 @@ const SkipSelector: React.FC = () => {
                 )}
               </div>
 
-              {/* Header */}
-              <div className={`p-6 border-b transition-colors duration-300 ${isDark ? 'border-gray-700' : 'border-gray-100'}`}>
+              {/* Header - Increased padding */}
+              <div className={`p-5 md:p-6 border-b transition-colors duration-300 ${isDark ? 'border-gray-700' : 'border-gray-100'}`}>
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className={`text-xl font-bold transition-colors duration-300 ${isDark ? 'text-white' : 'text-gray-900'}`}>{skip.size} Yard Skip</h3>
+                  <h3 className={`text-xl font-bold transition-colors duration-300 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                    {skip.size} Yard Skip
+                  </h3>
                 </div>
                 
                 <div className={`text-3xl font-bold transition-all duration-300 ${
@@ -220,22 +264,24 @@ const SkipSelector: React.FC = () => {
                     : 'bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent'
                 }`}>
                   £{calculateTotalPrice(skip)}
-                  <span className={`text-sm font-normal ml-2 transition-colors duration-300 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>inc. VAT</span>
+                  <span className={`text-sm font-normal ml-2 transition-colors duration-300 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                    inc. VAT
+                  </span>
                 </div>
               </div>
 
-              {/* Content */}
-              <div className="p-6">
+              {/* Content - Increased padding and spacing */}
+              <div className="p-5 md:p-6">
                 {/* Duration */}
-                <div className={`flex items-center gap-2 mb-4 transition-colors duration-300 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                <div className={`flex items-center gap-3 mb-4 transition-colors duration-300 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
                   <Clock size={16} className={`transition-colors duration-300 ${isDark ? 'text-indigo-400' : 'text-indigo-500'}`} />
                   <span className="text-sm font-medium">{skip.hire_period_days} day hire period</span>
                 </div>
 
-                {/* Features */}
-                <div className="space-y-3 mb-6">
+                {/* Features - Increased spacing */}
+                <div className="space-y-3 mb-5">
                   {skip.allowed_on_road ? (
-                    <div className={`flex items-center gap-2 px-3 py-2 rounded-lg border transition-all duration-300 ${
+                    <div className={`flex items-center gap-3 px-3 py-2 rounded-lg border transition-all duration-300 ${
                       isDark 
                         ? 'text-emerald-300 bg-emerald-900/30 border-emerald-700' 
                         : 'text-emerald-800 bg-emerald-100 border-emerald-200'
@@ -244,7 +290,7 @@ const SkipSelector: React.FC = () => {
                       <span className="text-sm font-medium">Road permit included</span>
                     </div>
                   ) : (
-                    <div className={`flex items-center gap-2 px-3 py-2 rounded-lg border transition-all duration-300 ${
+                    <div className={`flex items-center gap-3 px-3 py-2 rounded-lg border transition-all duration-300 ${
                       isDark 
                         ? 'text-amber-300 bg-amber-900/30 border-amber-700' 
                         : 'text-amber-800 bg-amber-100 border-amber-200'
@@ -265,13 +311,13 @@ const SkipSelector: React.FC = () => {
                   )}
                 </div>
 
-                {/* Action Button */}
+                {/* Action Button - Increased size */}
                 <button
-                  className={`w-full py-3 px-4 rounded-xl font-semibold transition-all duration-300 transform ${
+                  className={`w-full py-3 px-4 rounded-xl text-base font-semibold transition-all duration-300 ${
                     selectedSkip === skip.id
                       ? (isDark 
-                          ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:from-indigo-600 hover:to-purple-600 shadow-lg scale-105' 
-                          : 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700 shadow-lg scale-105')
+                          ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:from-indigo-600 hover:to-purple-600 shadow-lg' 
+                          : 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700 shadow-lg')
                       : (isDark 
                           ? 'bg-gradient-to-r from-gray-700 to-gray-800 text-gray-300 hover:from-indigo-900/50 hover:to-purple-900/50 hover:text-indigo-300' 
                           : 'bg-gradient-to-r from-gray-100 to-gray-200 text-gray-700 hover:from-indigo-50 hover:to-purple-50 hover:text-indigo-700')
@@ -291,19 +337,61 @@ const SkipSelector: React.FC = () => {
 
       {/* Footer - Only show when skip is selected */}
       {selectedSkipData && (
-        <div className={`backdrop-blur-sm border-t p-6 sticky bottom-0 shadow-2xl transition-all duration-300 ${
+        <div className={`backdrop-blur-sm border-t sticky bottom-0 shadow-2xl transition-all duration-300 ${
           isDark ? 'bg-gray-900/95 border-gray-700' : 'bg-white/90 border-indigo-200'
         }`}>
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 py-4 sm:py-5 md:py-6">
             {/* Disclaimer */}
-            <div className={`text-base mb-4 transition-colors duration-300 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+            <div className={`text-xs sm:text-sm md:text-base mb-3 sm:mb-4 transition-colors duration-300 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
               Imagery and information shown throughout this website may not reflect the exact shape or size specification, colours may vary, options and/or accessories may be featured at additional cost.
             </div>
             
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-8">
+            {/* Mobile Layout */}
+            <div className="block sm:hidden space-y-4">
+              <div className="text-center">
+                <div className={`text-lg font-bold transition-all duration-300 ${
+                  isDark 
+                    ? 'bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent' 
+                    : 'bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent'
+                }`}>
+                  {selectedSkipData.size} Yard Skip Selected
+                </div>
+                <div className={`flex items-center justify-center gap-3 text-sm mt-1 transition-colors duration-300 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                  <span className="font-semibold">£{calculateTotalPrice(selectedSkipData)} inc. VAT</span>
+                  <span>•</span>
+                  <span>{selectedSkipData.hire_period_days} day hire</span>
+                </div>
+              </div>
+              
+              <div className="flex gap-3">
+                <button
+                  onClick={handleBack}
+                  className={`flex-1 py-3 px-4 rounded-xl transition-all duration-300 font-semibold text-sm ${
+                    isDark 
+                      ? 'bg-gradient-to-r from-gray-700 to-gray-800 text-gray-300 hover:from-gray-600 hover:to-gray-700' 
+                      : 'bg-gradient-to-r from-gray-100 to-gray-200 text-gray-700 hover:from-gray-200 hover:to-gray-300'
+                  }`}
+                >
+                  Back
+                </button>
+                <button
+                  onClick={handleContinue}
+                  className={`flex-1 py-3 px-4 rounded-xl transition-all duration-300 font-semibold shadow-lg hover:shadow-xl text-sm ${
+                    isDark 
+                      ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:from-indigo-600 hover:to-purple-600' 
+                      : 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700'
+                  }`}
+                >
+                  Continue →
+                </button>
+              </div>
+            </div>
+
+            {/* Desktop/Tablet Layout */}
+            <div className="hidden sm:flex items-center justify-between">
+              <div className="flex items-center gap-6 md:gap-8">
                 <div>
-                  <div className={`text-xl font-bold transition-all duration-300 ${
+                  <div className={`text-lg md:text-xl font-bold transition-all duration-300 ${
                     isDark 
                       ? 'bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent' 
                       : 'bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent'
@@ -318,10 +406,10 @@ const SkipSelector: React.FC = () => {
                 </div>
               </div>
               
-              <div className="flex gap-4">
+              <div className="flex gap-3 sm:gap-4">
                 <button
                   onClick={handleBack}
-                  className={`px-8 py-3 rounded-xl transition-all duration-300 font-semibold ${
+                  className={`px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl transition-all duration-300 font-semibold text-sm sm:text-base ${
                     isDark 
                       ? 'bg-gradient-to-r from-gray-700 to-gray-800 text-gray-300 hover:from-gray-600 hover:to-gray-700' 
                       : 'bg-gradient-to-r from-gray-100 to-gray-200 text-gray-700 hover:from-gray-200 hover:to-gray-300'
@@ -331,7 +419,7 @@ const SkipSelector: React.FC = () => {
                 </button>
                 <button
                   onClick={handleContinue}
-                  className={`px-10 py-3 rounded-xl transition-all duration-300 font-semibold shadow-lg hover:shadow-xl ${
+                  className={`px-8 sm:px-10 py-2.5 sm:py-3 rounded-xl transition-all duration-300 font-semibold shadow-lg hover:shadow-xl text-sm sm:text-base ${
                     isDark 
                       ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:from-indigo-600 hover:to-purple-600' 
                       : 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700'
