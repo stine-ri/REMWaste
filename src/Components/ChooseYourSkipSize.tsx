@@ -199,7 +199,7 @@ const SkipSelector: React.FC = () => {
           </p>
         </div>
 
-        {/* Skip Grid - Updated to show 3 cards on desktop */}
+        {/* Skip Grid  */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8 mb-6 sm:mb-8">
           {skips.map((skip) => (
             <div
@@ -215,7 +215,7 @@ const SkipSelector: React.FC = () => {
               }`}
               onClick={() => handleSkipSelection(skip.id)}
             >
-              {/* Skip Image - Increased size */}
+              {/* Skip Image  */}
               <div className="relative h-48 sm:h-52 md:h-56 bg-gradient-to-br from-orange-400 via-yellow-400 to-orange-500 rounded-t-2xl overflow-hidden">
                 {/* Skip Size Badge */}
                 <div className={`absolute top-4 right-4 px-4 py-2 rounded-full text-sm font-bold shadow-lg transition-all duration-300 ${
@@ -226,7 +226,7 @@ const SkipSelector: React.FC = () => {
                   {skip.size} Yards
                 </div>
                 
-                {/* Skip Bin SVG - Increased size */}
+                {/* Skip Bin SVG  */}
                 <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
                   <svg width="140" height="90" viewBox="0 0 120 80" className="drop-shadow-2xl">
                     <rect x="20" y="25" width="80" height="45" fill="#FFA500" stroke="#FF8C00" strokeWidth="2" rx="4"/>
@@ -250,7 +250,7 @@ const SkipSelector: React.FC = () => {
                 )}
               </div>
 
-              {/* Header - Increased padding */}
+              {/* Header  */}
               <div className={`p-5 md:p-6 border-b transition-colors duration-300 ${isDark ? 'border-gray-700' : 'border-gray-100'}`}>
                 <div className="flex items-center justify-between mb-3">
                   <h3 className={`text-xl font-bold transition-colors duration-300 ${isDark ? 'text-white' : 'text-gray-900'}`}>
@@ -270,7 +270,7 @@ const SkipSelector: React.FC = () => {
                 </div>
               </div>
 
-              {/* Content - Increased padding and spacing */}
+              {/* Content  */}
               <div className="p-5 md:p-6">
                 {/* Duration */}
                 <div className={`flex items-center gap-3 mb-4 transition-colors duration-300 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -311,7 +311,7 @@ const SkipSelector: React.FC = () => {
                   )}
                 </div>
 
-                {/* Action Button - Increased size */}
+                {/* Action Button  */}
                 <button
                   className={`w-full py-3 px-4 rounded-xl text-base font-semibold transition-all duration-300 ${
                     selectedSkip === skip.id

@@ -22,6 +22,11 @@ A modern, responsive React component for selecting skip sizes with a beautiful d
 The component displays available skip sizes (4-40 yards) with pricing, hire periods, and availability information. Users can select a skip size and proceed to the next step in the booking process.
 
 ## 📦 Installation
+1. 1. Clone the repository:
+   ```bash
+   git clone https://github.com/stine-ri/REMWaste
+
+
 
 This component requires the following dependencies:
 
