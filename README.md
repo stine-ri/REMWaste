@@ -2,6 +2,10 @@
 
 A modern, responsive React component for selecting skip sizes with a beautiful dark/light theme toggle. Built with React, TypeScript and styled using Tailwind CSS.
 
+### 🔗 Live Site
+👉 https://rem-waste-iota.vercel.app/
+
+
 ## 🌟 Features
 
 - **Responsive Design**: Works seamlessly across desktop, tablet, and mobile devices
